@@ -5,3 +5,21 @@ environments:
 - name: staging
 - name: prod
 project_id: project-58cd7e05-f466-4815-ab27-8c16bd4f1c74
+plugins:
+  extractors:
+  - name: tap-google-sheets
+    variant: meltano
+    pip_url: git+https://github.com/Matatika/tap-google-sheets@v0.2.0
+  loaders:
+  - name: target-postgres
+    variant: transferwise
+    pip_url: git+https://github.com/Matatika/pipelinewise-target-postgres@v0.1.0
+  transformers:
+  - name: dbt
+    variant: dbt
+    pip_url: "dbt-core~=1.0.0 dbt-postgres~=1.0.0 dbt-redshift~=1.0.0 dbt-snowflake~=1.0.0\
+      \ dbt-bigquery~=1.0.0\n"
+  files:
+  - name: files-dbt
+    variant: dbt
+    pip_url: git+https://github.com/Matatika/files-dbt@v1.0.x.1
